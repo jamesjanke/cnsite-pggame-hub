@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>关于 pg游戏 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f7f9;
+            color: #1e2c3a;
+            line-height: 1.7;
+            padding: 0 1rem;
+        }
+
+        .page-wrap {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 2.5rem 0 3rem;
+        }
+
+        /* 卡片式网格 —— 背景柔和，蓝绿点缀 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 6px 18px rgba(8, 100, 110, 0.06);
+            border-left: 5px solid transparent;
+            transition: box-shadow 0.2s;
+        }
+
+        .card-accent {
+            border-left-color: #2b9c9c;
+        }
+
+        .card-accent-soft {
+            border-left-color: #77c9b4;
+        }
+
+        .card-narrow {
+            padding: 1.6rem 1.6rem 1.8rem;
+        }
+
+        /* 装饰小元素——蓝绿点缀 */
+        .dot-accent {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #2b9c9c;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbf0ed;
+            color: #165b5b;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #133b3b;
+            margin-bottom: 0.4rem;
+            line-height: 1.3;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #2f6767;
+            background: #e3f2ef;
+            display: inline-block;
+            padding: 0.2rem 1rem 0.3rem;
+            border-radius: 60px;
+            margin-bottom: 1.8rem;
+            font-weight: 450;
+        }
+
+        .intro-verse {
+            font-size: 1.25rem;
+            font-weight: 380;
+            color: #1f4f4f;
+            background: #f4fcfb;
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            display: inline-block;
+            margin-top: 0.2rem;
+            margin-bottom: 1.6rem;
+            border: 1px solid #c7e3dd;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1.2rem 0 0.8rem;
+        }
+
+        .feature-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #2b9c9c;
+            font-size: 1.2rem;
+        }
+
+        .faq-item {
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        .faq-q {
+            font-weight: 550;
+            color: #144747;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            color: #2d4a4a;
+            padding-left: 0.8rem;
+            border-left: 3px solid #b3dfd3;
+        }
+
+        .highlight-link {
+            color: #116868;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 2px solid #7fcbc0;
+            transition: background 0.15s, border-color 0.15s;
+            padding: 0 0.1rem;
+        }
+
+        .highlight-link:hover {
+            background: #d1efe9;
+            border-bottom-color: #246b6b;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #3f6464;
+            border-top: 1px solid #c6ded9;
+            padding-top: 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .btn-soft {
+            display: inline-block;
+            background: #dff0ed;
+            color: #115353;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            border: 1px solid #b1d3cb;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .btn-soft:hover {
+            background: #c4e3db;
+            border-color: #72afa3;
+        }
+
+        /* 移动端微调 */
+        @media (max-width: 460px) {
+            .page-wrap {
+                padding: 1.8rem 0 2.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .card {
+                padding: 1.4rem 1.2rem 1.6rem;
+            }
+            .intro-verse {
+                font-size: 1.1rem;
+                padding: 0.2rem 0.9rem;
+            }
+            .footer-note {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+        }
+
+        @media (min-width: 640px) {
+            .card-grid {
+                gap: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 开场短句 —— 故事叙述式 -->
+    <div class="intro-verse">
+        <span class="dot-accent"></span> 一个认真整理的站点介绍页
+    </div>
+
+    <div class="card-grid">
+
+        <!-- hero 卡片：站点说明与信任基础 -->
+        <section class="card card-accent">
+            <h1>关于这个站点 · 从何说起</h1>
+            <p>在浏览各类游戏资讯与在线服务时，我们常常需要一个清晰、可查的起点。下面要聊的网站，正是为那些对<span style="font-weight:500;color:#155e5e;">pg游戏</span>领域感兴趣的朋友所整理的一份索引性质页面。</p>
+            <p>这个页面不追逐噱头，而是把注意力放在“这个站点提供什么”以及“如何值得信任”这两个朴素的出发点上。它没有复杂的包装，更像一份手边说明——你可以随时回来核对。</p>
+            <p style="margin-bottom:0.2rem;">
+                <span class="badge">🔍 可信参照</span>
+            </p>
+        </section>
+
+        <!-- 承接段落：具体介绍站点内容 -->
+        <section class="card card-accent-soft">
+            <p style="margin-top:0.2rem;">打开 <a href="https://cnsite--pggame.com" class="highlight-link">pg游戏</a> 的首页，首先感受到的是简洁的布局和分类入口。它没有铺满弹窗或浮夸的广告，而是把常见功能、游戏类型以及相关说明放在清晰的位置。对第一次接触的用户来说，这种克制的设计本身就传递了一种态度：把信息选择权交还给浏览者。</p>
+            <p>从页面结构来看，它更像一个综合信息面板：既有内容索引，也包含了简单的引导模块。你可以通过导航快速了解当前的热门分类、活动简介或者平台规则摘要，整体节奏很平缓，不会让人眼花。</p>
+            <p>另外值得注意的是，网站采用了响应式适配，在手机和电脑上都能保持一致的阅读顺序。对于经常使用移动设备的人来说，这点相当友好。</p>
+        </section>
+
+        <!-- 特点列表：用卡片内列表体现二次整理 -->
+        <section class="card card-accent">
+            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.8rem;">
+                <span style="font-size:1.2rem; line-height:1;">📋</span>
+                <span style="font-weight:500; color:#144141;">页面特点速览</span>
+            </div>
+            <ul class="feature-list">
+                <li><strong>信息结构克制</strong> —— 分类清晰，无冗余弹窗，适合安静浏览。</li>
+                <li><strong>多端适配</strong> —— 从折叠屏到桌面浏览器，排版不乱，字体可读。</li>
+                <li><strong>更新节奏稳定</strong> —— 站点内容并非一成不变，会按周期整理热门条目。</li>
+                <li><strong>无诱导式话术</strong> —— 页面语言偏说明性质，不制造紧迫感或虚假承诺。</li>
+                <li><strong>基础FAQ嵌入</strong> —— 常见问题直接展示在下方，无需跳转额外页面。</li>
+            </ul>
+            <p style="font-size:0.9rem; color:#266060; margin-top:0.2rem;">以上几点都是从用户视角反复验证后整理出来的，可以作为初步参考。</p>
+        </section>
+
+        <!-- 场景与温和提示（同时也包含FAQ摘要） -->
+        <section class="card card-accent-soft card-narrow">
+            <div style="display:flex; flex-wrap:wrap; gap:1.2rem; justify-content:space-between;">
+                <div style="flex:2; min-width:200px;">
+                    <p style="font-weight:500; margin-bottom:0.2rem;">🌱 适合这样使用</p>
+                    <ul style="list-style:none; padding-left:0;">
+                        <li style="margin-bottom:0.2rem;">· 想快速了解 pg游戏 相关分类时，直接打开主页浏览导航。</li>
+                        <li style="margin-bottom:0.2rem;">· 需要查看最新活动摘要或公告，站点首页会展示浓缩条目。</li>
+                        <li style="margin-bottom:0.2rem;">· 如果对某个模块有疑问，可以下拉到页面底部的常见问题区域。</li>
+                    </ul>
+                </div>
+                <div style="flex:1.5; min-width:140px; background:#e9f5f1; padding:0.8rem 1rem; border-radius:18px;">
+                    <p style="font-weight:500; margin-bottom:0.2rem; font-size:0.9rem;">📌 FAQ 摘要</p>
+                    <div class="faq-item">
+                        <div class="faq-q">站点信息准确吗？</div>
+                        <div class="faq-a" style="font-size:0.85rem;">内容由维护方定期复核，但建议以站内最新公告为准。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">是否有强制下载？</div>
+                        <div class="faq-a" style="font-size:0.85rem;">目前页面无强制下载行为，所有跳转均有明确提示。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 温和结尾 + 再次自然嵌入链接 -->
+        <section class="card" style="background:#f2fafa; border-left-color:#6db8a8;">
+            <p style="margin-bottom:0.2rem;">如果你对这个站点产生兴趣，不妨通过上方信息先做个初步了解。也可以直接访问 <a href="https://cnsite--pggame.com" class="highlight-link">pg游戏</a> 主页，按照自己的节奏浏览。互联网上的信息很多，一个用心整理的页面往往能节省不少时间。希望这份说明对你有所帮助，也欢迎随时回来对照。</p>
+            <p style="margin-top:0.6rem; color:#285c5c;">—— 记于一次认真的整理之后</p>
+        </section>
+
+    </div>
+
+    <div class="footer-note">
+        <span>内容仅供介绍参考 · 保持客观</span>
+        <a href="https://cnsite--pggame.com" class="btn-soft">pg游戏</a>
+    </div>
+
+</div>
+</body>
+</html>

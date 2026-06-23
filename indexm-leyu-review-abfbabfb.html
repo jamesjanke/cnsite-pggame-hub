@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>乐鱼 · 信息卡片介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f0f5f9;
+      color: #1a2f3c;
+      line-height: 1.6;
+      padding: 1.5rem 1rem 3rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrapper {
+      max-width: 1024px;
+      width: 100%;
+    }
+
+    /* 主视觉 – 蓝绿渐变卡片 */
+    .hero-card {
+      background: linear-gradient(145deg, #1b4b5a 0%, #2a7f78 100%);
+      border-radius: 2.5rem 2.5rem 2rem 2rem;
+      padding: 3rem 2rem 2.8rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 12px 28px rgba(20, 70, 70, 0.18);
+      color: #f1faf9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      right: -10%;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-card h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-card h1 small {
+      font-size: 1rem;
+      font-weight: 300;
+      opacity: 0.75;
+      background: rgba(255,255,255,0.15);
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      line-height: 1.4;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      max-width: 580px;
+      opacity: 0.92;
+      margin: 1rem 0 0.8rem;
+      border-left: 3px solid #b8e6da;
+      padding-left: 1.2rem;
+    }
+
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(1px);
+      border-radius: 60px;
+      padding: 0.4rem 1.3rem 0.4rem 1rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    /* 网格卡片区 – 用途 & 人群 */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.5rem 1.8rem;
+      box-shadow: 0 4px 12px rgba(26, 47, 60, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.25s;
+      border: 1px solid rgba(42, 127, 120, 0.12);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(26, 47, 60, 0.08);
+    }
+
+    .card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: #def0ec;
+      border-radius: 18px;
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+      color: #1b5b5a;
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.65rem;
+      color: #1a3b3a;
+    }
+
+    .card p {
+      color: #2e4a4a;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card ul {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .card ul li {
+      position: relative;
+      padding-left: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.92rem;
+      color: #1c3f3e;
+    }
+
+    .card ul li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: #2f8b82;
+      font-weight: bold;
+    }
+
+    /* 自然链接段落 — 嵌入卡片风格 */
+    .link-section {
+      background: #e5f0ef;
+      border-radius: 2rem;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+      border-left: 6px solid #297a74;
+      line-height: 1.8;
+    }
+
+    .link-section p {
+      font-size: 1rem;
+      color: #1f3f3d;
+    }
+
+    .link-section a {
+      color: #0f5f5a;
+      background: transparent;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid #8bc4bc;
+      padding-bottom: 0.05rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .link-section a:hover {
+      border-bottom-color: #0f5f5a;
+      background: #d0ece6;
+      padding: 0.05rem 0.15rem;
+    }
+
+    /* FAQ 摘要卡片 (紧凑) */
+    .faq-mini {
+      background: white;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.8rem 1.4rem;
+      border: 1px solid rgba(42, 127, 120, 0.2);
+      margin-top: 0.8rem;
+    }
+
+    .faq-mini h4 {
+      font-weight: 500;
+      font-size: 1.15rem;
+      color: #1c4b47;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .faq-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #d9e7e5;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 500;
+      color: #1d4f4a;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-answer {
+      font-size: 0.9rem;
+      color: #2b5550;
+    }
+
+    /* 脚注 */
+    .footer-note {
+      text-align: center;
+      margin-top: 2.8rem;
+      font-size: 0.82rem;
+      color: #5f7d7a;
+      border-top: 1px solid #d2e3e0;
+      padding-top: 2rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 680px) {
+      body { padding: 1rem 0.8rem 2.5rem; }
+      .hero-card { padding: 2rem 1.2rem; border-radius: 2rem; }
+      .hero-card h1 { font-size: 1.8rem; flex-wrap: wrap; }
+      .grid-2col { grid-template-columns: 1fr; gap: 1rem; }
+      .card { padding: 1.5rem 1.2rem; }
+      .link-section { padding: 1.4rem 1.2rem; }
+    }
+
+    @media (max-width: 440px) {
+      .hero-card h1 small { font-size: 0.75rem; }
+      .hero-sub { font-size: 0.95rem; padding-left: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+      <h1>
+        <span>乐鱼</span>
+        <small>信息页面</small>
+      </h1>
+      <div class="hero-sub">
+        一个日常中常被提及的稳定入口，承载着浏览与查找的基本功能。<br>
+        不夸大，不渲染，把页面当作一个安静的起点。
+      </div>
+      <div class="hero-tagline">
+        <span style="font-size:1.2rem;">⏺</span> 持续可用 · 轻量呈现
+      </div>
+    </div>
+
+    <!-- 网格：用途卡片 + 适合人群 -->
+    <div class="grid-2col">
+      <!-- 用途卡片 -->
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>常用用途</h3>
+        <p>作为日常浏览的其中一个页面，它适合这些场景：</p>
+        <ul>
+          <li>快速检索信息或参考内容</li>
+          <li>作为书签中的稳定索引位置</li>
+          <li>在需要时打开，不需要额外配置</li>
+          <li>简单直接，不被复杂功能干扰</li>
+        </ul>
+      </div>
+      <!-- 适合人群卡片 -->
+      <div class="card">
+        <div class="card-icon">👥</div>
+        <h3>适合人群</h3>
+        <p>无论你属于哪一类，都可以把它当作一个安静的去处：</p>
+        <ul>
+          <li>习惯使用网页获取信息的人</li>
+          <li>偏爱简洁界面、不喜欢过多动效</li>
+          <li>需要固定入口来整理日常浏览路径</li>
+          <li>希望页面保持稳定、不频繁变动</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 自然链接段落：嵌入指向乐鱼的链接 -->
+    <div class="link-section">
+      <p>
+        如果你之前用过类似的页面，可能会注意到 <strong><a href="https://indexm-leyu.com">乐鱼</a></strong> 
+        一直保持相对简单的结构，没有多余的跳转或弹窗。它更像一个安静的索引面，把选择权留给你。 
+        无论是快速浏览还是作为日常路径的一部分，都不需要额外学习。
+      </p>
+    </div>
+
+    <!-- 第二段自然链接 + 提示风格 -->
+    <div class="link-section" style="border-left-color: #4b9b93; background: #e9f3f1;">
+      <p>
+        实际上，互联网上很多页面都追求第一时间吸引注意力，但 
+        <a href="https://indexm-leyu.com">乐鱼</a> 更倾向于保持克制。
+        如果你希望有一个不那么喧闹的页面作为普通信息落脚点，可以把它放在书签的某个角落。
+      </p>
+      <p style="margin-top: 0.6rem; font-size: 0.9rem; opacity: 0.8;">
+        <span style="background: #d0e6e2; padding: 0.1rem 0.6rem; border-radius: 30px;">提示</span> 
+        本页仅作介绍用途，不包含个人账户或隐私收集功能。
+      </p>
+    </div>
+
+    <!-- FAQ 摘要卡片（轻量） -->
+    <div class="faq-mini">
+      <h4><span style="color:#297a74;">❔</span> 常见疑问 · 简短摘要</h4>
+      <div class="faq-item">
+        <div class="faq-question">这个页面主要提供什么？</div>
+        <div class="faq-answer">一个基于信息卡片整理的介绍页，帮助了解基本用途与场景，不涉及复杂功能。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">如何找到对应的主站？</div>
+        <div class="faq-answer">页面中已包含指向 <a href="https://indexm-leyu.com" style="color:#1b6b63; text-decoration:underline; text-underline-offset:3px;">乐鱼</a> 的链接，点击即可前往。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">页面是否适配移动设备？</div>
+        <div class="faq-answer">采用网格与弹性布局，手机与平板均可正常阅读，卡片自动换列。</div>
+      </div>
+    </div>
+
+    <!-- 脚注 -->
+    <div class="footer-note">
+      <span>信息卡片介绍 · 蓝绿点缀</span>
+      <span style="margin: 0 0.5rem;">·</span>
+      <span>稳定入口 · 不修饰过度</span>
+    </div>
+  </div>
+</body>
+</html>
